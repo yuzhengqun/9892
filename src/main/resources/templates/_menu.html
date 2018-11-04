@@ -1,0 +1,77 @@
+<div>
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">卡希布</a>
+			</div>
+			<div>
+				<!--向左对齐-->
+				<ul class="nav navbar-nav navbar-left">
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown"> 男人天地 <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{'/item/' + '篮球鞋'}">篮球鞋</a></li>
+							<li><a th:href="@{'/item/' + '足球鞋'}">足球鞋</a></li>
+							<li><a th:href="@{'/item/' + '男平底鞋'}">平底鞋</a></li>
+							<li class="divider"></li>
+							<li><a th:href="@{'/item/' + '男短袖'}">短袖</a></li>
+							<li><a th:href="@{'/item/' + '男外套'}">外套</a></li>
+							<li><a th:href="@{'/item/' + '牛仔裤'}">牛仔裤</a></li>
+							<li class="divider"></li>
+							<li><a th:href="@{'/item/' + '袜子'}">袜子</a></li>
+							<li><a th:href="@{'/item/' + '帽子'}">帽子</a></li>
+							<li><a th:href="@{'/item/' + '手套'}">手套</a></li>
+						</ul></li>
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown"> 女性专场 <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{'/item/' + '女装'}">女装</a></li>
+							<li><a th:href="@{'/item/' + '女鞋'}">女鞋</a></li>
+							<li><a th:href="@{'/item/' + '内衣'}">内衣</a></li>
+							<li class="divider"></li>
+							<li><a th:href="@{'/item/' + '美妆'}">美妆</a></li>
+							<li><a th:href="@{'/item/' + '美发'}">美发</a></li>
+							<li><a th:href="@{'/item/' + '化妆品'}">化妆品</a></li>
+							<li class="divider"></li>
+							<li><a th:href="@{'/item/' + '女包'}">女包</a></li>
+							<li><a th:href="@{'/item/' + '手饰'}">手饰</a></li>
+							<li><a th:href="@{'/item/' + '丝袜'}">丝袜</a></li>
+						</ul></li>
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown"> 书城 <b class="caret"></b>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{'/item/' + 'PHP'}">PHP</a></li>
+							<li><a th:href="@{'/item/' + 'JAVA'}">JAVA</a></li>
+							<li><a th:href="@{'/item/' + 'Java Script'}">Java Script</a></li>
+							<li class="divider"></li>
+							<li><a th:href="@{'/item/' + '历史'}">历史</a></li>
+							<li><a th:href="@{'/item/' + '军事'}">军事</a></li>
+							<li><a th:href="@{'/item/' + '政治'}">政治</a></li>
+							<li class="divider"></li>
+							<li><a th:href="@{'/item/' + '言情'}">言情</a></li>
+							<li><a th:href="@{'/item/' + '武侠'}">武侠</a></li>
+							<li><a th:href="@{'/item/' + '侦探'}">侦探</a></li>
+						</ul></li>
+
+					<li class="dropdown"><a th:href="@{'/coupon/'}"
+						class="dropdown-toggle"> 优惠券专区 </a></li>
+					<li class="dropdown"><a th:href="@{'/hot/'}"
+						class="dropdown-toggle"> 聚划算专区 </a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search">
+					<div class="input-group">
+						<input id="searchVal" type="text" class="form-control" /> <span
+							class="input-group-btn">
+							<button id="searchBtn" class="btn btn-default" type="button">Go!</button>
+						</span>
+					</div>
+					<!-- /input-group -->
+				</form>
+
+			</div>
+		</div>
+	</nav>
+</div>
