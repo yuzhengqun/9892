@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:prg="http://thymeleafexamples">
+<head lang="en">
+<meta charset="UTF-8" />
+<meta name="keywords" content="9892.com.cn,备案域名平台,备案域名购买,阿里云备案域名购买,腾讯云备案域名购买,过微信备案域名购买,阿里云过微信备案域名购买"/>
+<meta name="description" content="9892.com.cn是一个领先的备案域名平台,致力于长期为用户提供备案域名,阿里云备案域名,腾讯云备案域名,过微信备案域名!" />
+<title>腾讯云过微信备案域名 - 备案域名平台(9892.com.cn)</title>
+
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+div {
+	display: block;
+}
+
+body, button, input, select, textarea {
+	font: 14px/1.6 "Microsoft YaHei", 'Helvetica Neue', Helvetica, STHeiTi,
+		Arial, sans-serif;
+}
+
+.menu {
+	width: 100%;
+	height: 40px;
+	background: #ff6f29;
+}
+
+.container {
+	width: 1200px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.clearfix {
+	zoom: 1;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+ul, menu, dir {
+	display: block;
+	list-style-type: disc;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 40px;
+}
+
+.menu .menu-list li {
+	display: inline;
+	float: left;
+	height: 40px;
+	line-height: 40px;
+}
+
+.menu-list .active {
+	background: #ff8c37;
+}
+
+blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5,
+	h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+.menu-list li a {
+	color: #fff;
+	padding: 0 30px;
+	font-size: 16px;
+	text-decoration: none;
+	outline: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.header {
+	height: 80px;
+}
+
+.header .logo_set {
+	display: block;
+	width: 410px;
+	padding: 10px 0;
+	float: left;
+}
+
+.content {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.pub-table2 th {
+	background-color: #fafafa;
+	font-size: 14px;
+	color: #666;
+	font-weight: normal;
+	padding: 18px 6px;
+}
+
+.pub-table2 {
+	font-size: 12px;
+	color: #444;
+	background-color: #fff;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+tbody {
+	display: table-row-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+
+.pub-table2 tr {
+	border-bottom: 1px solid #f1f1f1;
+}
+
+tr {
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
+}
+
+.pub-table2 td {
+	padding: 9px 6px;
+}
+
+.pub-tabBtn1 {
+	display: inline-block;
+	padding: 0 7px;
+	height: 22px;
+	line-height: 24px;
+	font-size: 12px;
+	color: #fff;
+	background-color: #ffab49;
+	border: 1px solid #ff9a25;
+}
+
+a {
+	color: #333;
+	text-decoration: none;
+}
+
+.pub-table2 .bg {
+	background-color: #fbfbfb;
+}
+
+.pub-table2 .pageNum {
+	float: right;
+	font-size: 12px;
+	color: #747474;
+	padding-right: 5px;
+}
+
+.pages.f12 {
+	font-size: 12px;
+}
+
+.pages {
+	color: #666;
+	font-size: 14px;
+	line-height: 22px;
+}
+
+.pub-table2 .pageNum .cur {
+	border: 1px solid #f60;
+	background-color: #f60;
+	color: #fff;
+}
+
+.pages a.cur {
+	background-color: #ddd;
+	font-weight: 700;
+}
+
+.pub-table2 .pageNum a {
+	display: inline-block;
+	margin: 0 2px;
+	padding: 0 6px;
+	height: 19px;
+	line-height: 21px;
+	border: 1px solid #d5dcde;
+}
+
+.pages a {
+	background-color: #f7f7f7;
+	border: 1px solid #d7d7d7;
+	display: inline-block;
+	margin: 0 2px;
+	padding: 0 6px;
+}
+
+.pub-table2 .pageNum input[type=text] {
+	width: 32px;
+	height: 19px;
+	border: 1px solid #d5dcde;
+	text-align: center;
+	outline: none;
+}
+
+.pages input {
+	background-color: #f7f7f7;
+	border: 1px solid #ccc;
+	padding: 2px 3px;
+	text-align: center;
+}
+
+.pub-table2 .pageNum input[type=button] {
+	width: 34px;
+	height: 21px;
+	border: 1px solid #d5dcde;
+	outline: none;
+	background-color: #fff;
+	cursor: pointer;
+	font-family: Arial, "Microsoft YaHei";
+}
+</style>
+</head>
+<body>
+	<div class="header">
+		<div class="container">
+			<div class="logo clearfix">
+				<a href="/"><img th:src="@{/image/9892.jpg}" /></a>
+			</div>
+			<div class="site_remind"></div>
+		</div>
+
+	</div>
+	<div class="menu">
+		<div class="container">
+			<ul class="menu-list clearfix">
+				<li><a href="/">首页</a></li>
+				<li><a href="/all/1">全部域名</a></li>
+				<li><a href="/aliyun_wx/1">阿里云微信未拦截</a></li>
+				<li class="active"><a href="#/tencent_wx/1">腾讯云微信未拦截</a></li>
+				<li><a href="/aliyun/1">阿里云接入域名</a></li>
+				<li><a href="/tencent/1">腾讯云接入域名</a></li>
+				<li><a href="http://www.9795.com.cn" target="_blank">过期域名预定</a></li>
+				<li><a href="#">帮助</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="content">
+		<div style="margin-top: 10px;">
+			<a href="http://www.9795.com.cn" target="_blank"> <img alt=""
+				th:src="@{/image/banner.png}" style="width: 100%" />
+			</a>
+		</div>
+		<div class="punycode_list">
+			<table class="pub-table2" style="width: 100%" id="domainList">
+				<tbody>
+					<tr>
+						<th width="200px;">域名</th>
+						<th>备案/许可证号</th>
+						<th>建站记录</th>
+						<th>建站时间</th>
+						<th>注册时间</th>
+						<th>到期时间</th>
+						<th>备案接入</th>
+						<th>价格</th>
+						<th>操作</th>
+					</tr>
+					  <tr th:each="record,recordStat: ${pageModel.domainInfos}" th:class="${recordStat.even}?'':'bg'">
+						<td align="center" th:text="${record.punycode}" style="max-width: 200px;overflow: hidden; text-overflow:ellipsis;white-space: nowrap"></td>
+						<td align="center" th:text="${record.icpNo}"></td>
+						<td align="center" th:text="${record.icpNature}"></td>
+						<td align="center" th:text="${record.icpDate}"></td>
+						<td align="center" th:text="${record.registerDate}"></td>
+						<td align="center" th:text="${record.expireDate}"></td>
+						<td align="center" th:text="${record.icpJoinUp}"></td>
+						<td align="center" th:text="${record.price}"></td>
+						<td ><a th:href="@{'/detail/'+${record.punycode}(path='腾讯云微信未拦截')}" target="_blank" class="pub-tabBtn1">购买</a></td>
+					</tr>
+					<tr class="page f14" style="border-bottom: none;">
+						<td align="center"></td>
+						<td colspan="9">
+							<div class="pageNum">
+								<div class="pages f12">
+								  共<span th:text="${pageModel.recordTotal}"></span>条
+								  <!-- 共1500条  -->
+								  <!-- 前3页 -->
+								  <a th:href="@{'/tencent_wx/'+${pageModel.currentPage-3}}" target="_self" th:text="${pageModel.currentPage-3}" th:if="${pageModel.currentPage-3}>0"></a>
+								  <a th:href="@{'/tencent_wx/'+${pageModel.currentPage-2}}" target="_self" th:text="${pageModel.currentPage-2}" th:if="${pageModel.currentPage-2}>0"></a>
+								  <a th:href="@{'/tencent_wx/'+${pageModel.currentPage-1}}" target="_self" th:text="${pageModel.currentPage-1}" th:if="${pageModel.currentPage-1}>0"></a>
+								  <a th:href="@{'/tencent_wx/'+${pageModel.currentPage}}" class="cur" th:text="${pageModel.currentPage}"></a>
+								  <a th:href="@{'/tencent_wx/'+${pageModel.currentPage+1}}" target="_self" th:text="${pageModel.currentPage+1}" th:if="${pageModel.pageTotal}>=${pageModel.currentPage+1}"></a>
+								  <a th:href="@{'/tencent_wx/'+${pageModel.currentPage+2}}" target="_self" th:text="${pageModel.currentPage+2}" th:if="${pageModel.pageTotal}>=${pageModel.currentPage+2}"></a>
+								  <em th:if="${pageModel.pageTotal}>${pageModel.currentPage+2}">...</em>
+								  <a th:href="@{'/tencent_wx/'+${pageModel.pageTotal-1}}" target="_self" th:text="${pageModel.pageTotal-1}" th:if="${pageModel.pageTotal-1}-${pageModel.currentPage+2}>0"></a>
+								  <a th:href="@{'/tencent_wx/'+${pageModel.pageTotal}}" target="_self" th:text="${pageModel.pageTotal}" th:if="${pageModel.pageTotal-1}-${pageModel.currentPage+2}>1"></a>
+								  <a th:href="@{'/tencent_wx/'+${pageModel.currentPage+1}}" class="next" th:if="${pageModel.pageTotal}>${pageModel.currentPage}">></a>
+								   到 
+								  <input id="page_jump" size="2" type="text" value="1"/>
+								   页 
+								  <input type="button" value="确定" onclick=""/>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div id="footer"></div>
+</body>
+</html>

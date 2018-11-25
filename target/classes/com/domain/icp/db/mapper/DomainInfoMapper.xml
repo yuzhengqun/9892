@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.domain.icp.db.dao.DomainInfoDao">
+	<resultMap id="BaseResultMap" type="com.domain.icp.db.vo.DomainInfo">
+		<result column="punycode" jdbcType="VARCHAR" property="punycode" />
+		<result column="suffix" jdbcType="VARCHAR" property="suffix" />
+		<result column="prefix" jdbcType="VARCHAR" property="prefix" />
+		<result column="registrar" jdbcType="VARCHAR" property="registrar" />
+		<result column="is_icp" jdbcType="INTEGER" property="isIcp" />
+		<result column="icp_no" jdbcType="VARCHAR" property="icpNo" />
+		<result column="length" jdbcType="INTEGER" property="length" />
+		<result column="icp_nature" jdbcType="VARCHAR" property="icpNature" />
+		<result column="site_title" jdbcType="VARCHAR" property="siteTitle" />
+		<result column="register_date" jdbcType="TIMESTAMP" property="registerDate" />
+		<result column="expire_date" jdbcType="TIMESTAMP" property="expireDate" />
+		<result column="qq_status" jdbcType="INTEGER" property="qqStatus" />
+		<result column="wx_status" jdbcType="INTEGER" property="wxStatus" />
+		<result column="price" jdbcType="INTEGER" property="price" />
+		<result column="sold_url" jdbcType="VARCHAR" property="soldUrl" />
+		<result column="is_recommend" jdbcType="INTEGER" property="isRecommend" />
+		<result column="icp_join_up" jdbcType="VARCHAR" property="icpJoinUp" />
+		<result column="icp_independence" jdbcType="INTEGER" property="icpInDependence" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="description" jdbcType="VARCHAR" property="description" />
+		<result column="seller_id" jdbcType="VARCHAR" property="sellerId" />
+		<result column="icp_date" jdbcType="TIMESTAMP" property="icpDate" />
+		<result column="icp_area" jdbcType="VARCHAR" property="icpArea" />
+		<result column="wx_status_url" jdbcType="VARCHAR" property="wxStatusUrl"/>
+		<result column="qq_status_url" jdbcType="VARCHAR" property="qqStatusUrl"/>
+		<result column="dns_parser" jdbcType="INTEGER" property="dnsParser"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		punycode, suffix, prefix, registrar, is_icp,
+		icp_no,length,icp_nature,site_title,register_date,
+		expire_date,qq_status,wx_status,price,sold_url,is_recommend,icp_join_up,icp_independence,status,
+		description,seller_id,icp_date,icp_area,qq_status_url,wx_status_url,dns_parser
+	</sql>
+
+	<select id="getAllDomainInfo" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		domain_info
+	</select>
+
+	<select id="getRecommendDomainList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		domain_info
+		where
+		is_recommend=1 and status = 1
+	</select>
+
+	<select id="getAliyunDomainList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		domain_info
+		where
+		icp_join_up='aliyun' and status = 1
+		order by is_recommend desc
+	</select>
+
+
+	<select id="getTecentDomainList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		domain_info
+		where
+		icp_join_up='tecent' and status = 1
+		order by is_recommend desc
+	</select>
+
+
+	<select id="getWXDomainList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		domain_info
+		where
+		wx_status=1 and status = 1
+		order by is_recommend desc
+	</select>
+
+	<select id="getAliyunWXDomainList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		domain_info
+		where
+		icp_join_up='aliyun' and wx_status=1 and status = 1
+		order by
+		is_recommend desc
+	</select>
+
+	<select id="getDomainInfoByPunycode" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from
+		domain_info
+		where
+		punycode = #{punycode}
+	</select>
+
+	<select id="update" parameterType="com.domain.icp.db.vo.DomainInfo">
+		update domain_info
+		<set>
+			<if test="suffix != null">
+				suffix = #{suffix,jdbcType=VARCHAR},
+			</if>
+			<if test="prefix != null">
+				prefix = #{prefix},
+			</if>
+			<if test="registrar != null">
+				registrar = #{registrar},
+			</if>
+			<if test="isIcp != null">
+				is_icp = #{isIcp},
+			</if>
+			<if test="icpNo != null">
+				icp_no = #{icpNo},
+			</if>
+			<if test="length != null">
+				length = #{length},
+			</if>
+			<if test="icpNature != null">
+				icp_nature = #{icpNature},
+			</if>
+			<if test="siteTitle != null">
+				site_title = #{siteTitle},
+			</if>
+			<if test="registerDate != null">
+				register_date = #{registerDate},
+			</if>
+			<if test="expireDate != null">
+				expire_date = #{expireDate},
+			</if>
+			<if test="qqStatus != null">
+				qq_status = #{qqStatus},
+			</if>
+			<if test="wxStatus != null">
+				wx_status = #{wxStatus},
+			</if>
+			<if test="price != null">
+				price = #{price},
+			</if>
+			<if test="soldUrl != null">
+				sold_url = #{soldUrl},
+			</if>
+			<if test="isRecommend != null">
+				is_recommend = #{isRecommend},
+			</if>
+			<if test="icpJoinUp != null">
+				icp_join_up = #{icpJoinUp},
+			</if>
+			<if test="icpInDependence != null">
+				icp_independence = #{icpInDependence},
+			</if>
+			<if test="description != null">
+				type = #{type,jdbcType=CHAR},
+			</if>
+			<if test="sellerId != null">
+				seller_id = #{sellerId},
+			</if>
+			<if test="updateTime != null">
+			    update_time = #{updateTime},
+			</if>
+		</set>
+		where punycode = #{punycode}
+	</select>
+
+
+	<insert id="save" parameterType="com.domain.icp.db.vo.DomainInfo">
+		insert into domain_info
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="punycode != null">
+				punycode,
+			</if>
+			<if test="suffix != null">
+				suffix,
+			</if>
+			<if test="prefix != null">
+				prefix,
+			</if>
+			<if test="registrar != null">
+				registrar,
+			</if>
+			<if test="isIcp != null">
+				is_icp,
+			</if>
+			<if test="icpNo != null">
+				icp_no,
+			</if>
+			<if test="length != null">
+				length,
+			</if>
+			<if test="icpNature != null">
+				icp_nature,
+			</if>
+			<if test="siteTitle != null">
+				site_title,
+			</if>
+			<if test="registerDate != null">
+				register_date,
+			</if>
+			<if test="expireDate != null">
+				expire_date,
+			</if>
+			<if test="qqStatus != null">
+				qq_status,
+			</if>
+			<if test="wxStatus != null">
+				wx_status,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="soldUrl != null">
+				sold_url,
+			</if>
+			<if test="isRecommend != null">
+				is_recommend,
+			</if>
+			<if test="icpJoinUp != null">
+				icp_join_up,
+			</if>
+			<if test="icpInDependence != null">
+				icp_independence,
+			</if>
+			<if test="description != null">
+				type,
+			</if>
+			<if test="sellerId != null">
+				seller_id,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="punycode != null">
+				#{punycode},
+			</if>
+			<if test="suffix != null">
+				#{suffix,jdbcType=VARCHAR},
+			</if>
+			<if test="prefix != null">
+				#{prefix},
+			</if>
+			<if test="registrar != null">
+				#{registrar},
+			</if>
+			<if test="isIcp != null">
+				#{isIcp},
+			</if>
+			<if test="icpNo != null">
+				#{icpNo},
+			</if>
+			<if test="length != null">
+				#{length},
+			</if>
+			<if test="icpNature != null">
+				#{icpNature},
+			</if>
+			<if test="siteTitle != null">
+				#{siteTitle},
+			</if>
+			<if test="registerDate != null">
+				#{registerDate},
+			</if>
+			<if test="expireDate != null">
+				#{expireDate},
+			</if>
+			<if test="qqStatus != null">
+				#{qqStatus},
+			</if>
+			<if test="wxStatus != null">
+				#{wxStatus},
+			</if>
+			<if test="price != null">
+				#{price},
+			</if>
+			<if test="soldUrl != null">
+				#{soldUrl},
+			</if>
+			<if test="isRecommend != null">
+				#{isRecommend},
+			</if>
+			<if test="icpJoinUp != null">
+				#{icpJoinUp},
+			</if>
+			<if test="icpInDependence != null">
+				#{icpInDependence},
+			</if>
+			<if test="description != null">
+				#{type,jdbcType=CHAR},
+			</if>
+			<if test="sellerId != null">
+				#{sellerId},
+			</if>
+		</trim>
+	</insert>
+
+	<select id="getRecommendDomainListByCondition" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select
+		punycode,icp_no,icp_nature,DATE_FORMAT(icp_date,"%Y-%m-%d") as
+		icp_date,DATE_FORMAT(register_date,"%Y-%m-%d") as
+		register_date,DATE_FORMAT(expire_date,"%Y-%m-%d") as
+		expire_date,icp_join_up,price
+		from
+		domain_info
+		<where>
+			<if test="wxStatus != null">
+				wx_status = #{wxStatus}
+			</if>
+			<if test="icpJoinUp != null">
+				and icp_join_up = #{icpJoinUp}
+			</if>
+			and is_recommend = 1 and is_icp = 1 and status = 1
+		</where>
+		limit #{limit}
+	</select>
+
+	<select id="getDomainListByPage" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select
+		punycode,icp_no,icp_nature,DATE_FORMAT(icp_date,"%Y-%m-%d") as
+		icp_date,DATE_FORMAT(register_date,"%Y-%m-%d") as
+		register_date,DATE_FORMAT(expire_date,"%Y-%m-%d") as
+		expire_date,icp_join_up,price
+		from
+		domain_info
+		<where>
+			<if test="wxStatus != null">
+				wx_status = #{wxStatus}
+			</if>
+			<if test="icpJoinUp != null">
+				and icp_join_up = #{icpJoinUp}
+			</if>
+			and is_icp = 1 and status = 1
+		</where>
+		order by is_recommend desc
+		limit #{limit} offset #{offset}
+	</select>
+
+	<select id="getDomainCount" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+		select
+		count(0)
+		from
+		domain_info
+		<where>
+			<if test="wxStatus != null">
+				wx_status = #{wxStatus}
+			</if>
+			<if test="icpJoinUp != null">
+				and icp_join_up = #{icpJoinUp}
+			</if>
+			and is_icp = 1 and status = 1
+		</where>
+	</select>
+
+	<select id="getAllDomainList" parameterType="com.domain.icp.model.QueryModel"
+		resultMap="BaseResultMap">
+		select
+		punycode,icp_no,icp_nature,DATE_FORMAT(icp_date,"%Y-%m-%d") as
+		icp_date,DATE_FORMAT(register_date,"%Y-%m-%d") as
+		register_date,DATE_FORMAT(expire_date,"%Y-%m-%d") as
+		expire_date,icp_join_up,price
+		from
+		domain_info
+		<where>
+			<if test="domainContains != null">
+				prefix like concat('%',#{domainContains},'%')
+			</if>
+			<if test='domainContains != null and domainContainsStart == 1'>
+				and prefix like concat(#{domainContains},'%')
+			</if>
+			<if test="domainContains != null and domainContainsEnd == 1">
+				and prefix like concat('%',#{domainContains})
+			</if>
+			<if test='icpJoinUp != "-1"'>
+				and icp_join_up = #{icpJoinUp}
+			</if>
+			<if test="wxStatus != -1">
+				and wx_status = #{wxStatus}
+			</if>
+			<if test="icpIndependence != -1">
+				and icp_independence = #{icpIndependence}
+			</if>
+			<if test='icpArea != "-1"'>
+				and icp_area = #{icpArea}
+			</if>
+			<if test='icpNature != "-1"'>
+				and icp_nature = #{icpNature}
+			</if>
+			<if test="qqStatus != -1">
+				and qq_status = #{qqStatus}
+			</if>
+			<if test="dnsParser != -1">
+				and dns_parser = #{dnsParser}
+			</if>
+			<if test="domainNotContains != null">
+				and prefix not like concat('%',#{domainNotContains},'%')
+			</if>
+			<if test="domainNotContains != null and domainNotContainsStart == 1">
+				and prefix not like concat(#{domainNotContains},'%')
+			</if>
+			<if test="domainNotContains != null and domainNotContainsEnd == 1">
+				and prefix not like concat('%',#{domainNotContains})
+			</if>
+			<if test='suffix != "-1"'>
+				and suffix = #{suffix}
+			</if>
+			<if test="registerDate != -1">
+			    <![CDATA[and TIMESTAMPDIFF(YEAR,register_date,now()) >= #{registerDate}]]>
+			</if>
+			<if test="expireDate != -1">
+		       <![CDATA[ and (to_days(expire_date)-to_days(now())) >= #{expireDate}  ]]>
+			</if>
+			<if test="priceStart != null">
+		        <![CDATA[ and price>=#{priceStart}  ]]>
+			</if>
+			<if test="priceEnd != null">
+		        <![CDATA[ and price<=#{priceEnd}  ]]>
+			</if>
+			and is_icp = 1 and status = 1
+		</where>
+		order by is_recommend desc
+		limit #{pageSize} offset #{offset}
+	</select>
+
+	<select id="getAllDomainCount" parameterType="com.domain.icp.model.QueryModel"
+		resultType="java.lang.Integer">
+		select
+		count(0)
+		from
+		domain_info
+		<where>
+			<if test="domainContains != null">
+				prefix like concat('%',#{domainContains},'%')
+			</if>
+			<if test='domainContains != null and domainContainsStart == 1'>
+				and prefix like concat(#{domainContains},'%')
+			</if>
+			<if test="domainContains != null and domainContainsEnd == 1">
+				and prefix like concat('%',#{domainContains})
+			</if>
+			<if test='icpJoinUp != "-1"'>
+				and icp_join_up = #{icpJoinUp}
+			</if>
+			<if test="wxStatus != -1">
+				and wx_status = #{wxStatus}
+			</if>
+			<if test="icpIndependence != -1">
+				and icp_independence = #{icpIndependence}
+			</if>
+			<if test='icpArea != "-1"'>
+				and icp_area = #{icpArea}
+			</if>
+			<if test='icpNature != "-1"'>
+				and icp_nature = #{icpNature}
+			</if>
+			<if test="qqStatus != -1">
+				and qq_status = #{qqStatus}
+			</if>
+			<if test="dnsParser != -1">
+				and dns_parser = #{dnsParser}
+			</if>
+			<if test="domainNotContains != null">
+				and prefix not like concat('%',#{domainNotContains},'%')
+			</if>
+			<if test="domainNotContains != null and domainNotContainsStart == 1">
+				and prefix not like concat(#{domainNotContains},'%')
+			</if>
+			<if test="domainNotContains != null and domainNotContainsEnd == 1">
+				and prefix not like concat('%',#{domainNotContains})
+			</if>
+			<if test='suffix != "-1"'>
+				and suffix = #{suffix}
+			</if>
+			<if test="registerDate != -1">
+			    <![CDATA[and TIMESTAMPDIFF(YEAR,register_date,now()) >= #{registerDate}]]>
+			</if>
+			<if test="expireDate != -1">
+		        <![CDATA[ and (to_days(expire_date)-to_days(now())) >= #{expireDate}  ]]>
+			</if>
+			<if test="priceStart != null">
+		        <![CDATA[ and price>=#{priceStart}  ]]>
+			</if>
+			<if test="priceEnd != null">
+		        <![CDATA[ and price<=#{priceEnd}  ]]>
+			</if>
+			and is_icp = 1 and status = 1
+		</where>
+	</select>
+
+	<select id="getDomainListForCrontab" parameterType="java.util.Map"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		domain_info
+		<where>
+			<if test="isIcp != null">
+				is_icp = #{isIcp}
+			</if>
+			<if test="wxStatus != null">
+				and wx_status = #{wxStatus}
+			</if>
+			<if test="qqStatus != null">
+				and qq_status = #{qqStatus}
+			</if>
+			and status = 1
+		</where>
+		limit #{limit} offset #{offset}
+	</select>
+	
+	<select id="getWhoisTasks" parameterType="java.util.Map" resultMap="BaseResultMap">
+	    select
+		  <include refid="Base_Column_List" />
+		from
+		  domain_info
+		where 
+		  status = 1 and is_icp = 1 and register_date is null
+		limit #{limit} offset #{offset}
+	</select>
+
+	<update id="batchUpdateDomainInfo"  parameterType="java.util.List">
+		<foreach collection="domainInfoList" item="domainInfo" index="index" separator=";" open="" close="" >
+			update domain_info
+			<set>
+				<if test="domainInfo.suffix != null">
+					suffix = #{domainInfo.suffix},
+				</if>
+				<if test="domainInfo.prefix != null">
+					prefix = #{domainInfo.prefix},
+				</if>
+				<if test="domainInfo.registrar != null">
+					registrar = #{domainInfo.registrar},
+				</if>
+				<if test="domainInfo.isIcp != null">
+					is_icp = #{domainInfo.isIcp},
+				</if>
+				<if test="domainInfo.icpNo != null">
+					icp_no = #{domainInfo.icpNo},
+				</if>
+				<if test="domainInfo.length != null">
+					length = #{domainInfo.length},
+				</if>
+				<if test="domainInfo.icpNature != null">
+					icp_nature = #{domainInfo.icpNature},
+				</if>
+				<if test="domainInfo.icpDate != null">
+					icp_date = #{domainInfo.icpDate},
+				</if>
+				<if test="domainInfo.siteTitle != null">
+					site_title = #{domainInfo.siteTitle},
+				</if>
+				<if test="domainInfo.registerDate != null">
+					register_date = #{domainInfo.registerDate},
+				</if>
+				<if test="domainInfo.expireDate != null">
+					expire_date = #{domainInfo.expireDate},
+				</if>
+				<if test="domainInfo.qqStatus != null">
+					qq_status = #{domainInfo.qqStatus},
+				</if>
+				<if test="domainInfo.wxStatus != null">
+					wx_status = #{domainInfo.wxStatus},
+				</if>
+				<if test="domainInfo.price != null">
+					price = #{domainInfo.price},
+				</if>
+				<if test="domainInfo.soldUrl != null">
+					sold_url = #{domainInfo.soldUrl},
+				</if>
+				<if test="domainInfo.isRecommend != null">
+					is_recommend = #{domainInfo.isRecommend},
+				</if>
+				<if test="domainInfo.icpJoinUp != null">
+					icp_join_up = #{domainInfo.icpJoinUp},
+				</if>
+				<if test="domainInfo.icpInDependence != null">
+					icp_independence = #{domainInfo.icpInDependence},
+				</if>
+				<if test="domainInfo.description != null">
+					type = #{domainInfo.type,jdbcType=CHAR},
+				</if>
+				<if test="domainInfo.sellerId != null">
+					seller_id = #{domainInfo.sellerId},
+				</if>
+				<if test="domainInfo.wxStatusUrl != null">
+				    wx_status_url = #{domainInfo.wxStatusUrl},
+				</if>
+				<if test="domainInfo.qqStatusUrl != null">
+				    qq_status_url = #{domainInfo.qqStatusUrl},
+				</if>
+				<if test="domainInfo.updateTime != null">
+				    update_time = #{domainInfo.updateTime},
+				</if>
+				<if test="domainInfo.dnsParser != null">
+				    dns_parser = #{domainInfo.dnsParser}
+				</if>
+			</set>
+			where punycode = #{domainInfo.punycode}
+		</foreach>
+	</update>
+	
+	<update id="updateStatusByUpdateTime" parameterType="java.util.Date">
+	    <![CDATA[ update domain_info set status = 0 where update_time < #{updateTime} ]]>
+	</update>
+</mapper>

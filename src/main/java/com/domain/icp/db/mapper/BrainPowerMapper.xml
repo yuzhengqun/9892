@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.domain.icp.db.dao.DomainInfoDao">
+    <resultMap id="BaseResultMap" type="com.domain.icp.db.vo.BrainPowerOrder">
+        <result column="punycode" jdbcType="VARCHAR" property="punycode"/>
+        <result column="suffix" jdbcType="VARCHAR" property="suffix"/>
+        <result column="order_date" jdbcType="VARCHAR" property="orderDate"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="icp_no" jdbcType="VARCHAR" property="icpNo"/>
+        <result column="icp_dl" jdbcType="INTEGER" property="icpDL"/>
+        <result column="wx_status" jdbcType="INTEGER" property="wxStatus"/>
+        <result column="qq_status" jdbcType="INTEGER" property="qqStatus"/>
+        <result column="absmiddle" jdbcType="INTEGER" property="absmiddle"/>
+        <result column="order_status" jdbcType="INTEGER" property="orderStatus"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <result column="is_lead" jdbcType="INTEGER" property="isLead"/>
+        <result column="auction_end_time" jdbcType="TIMESTAMP" property="auctionEndTime"/>
+        <result column="auction_status" jdbcType="INTEGER" property="auctionStatus"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        punycode, suffix,
+        order_date,type,icp_no,icp_dl,wx_status,qq_status,absmiddle,order_status,price,is_lead,auction_end_time,auction_status,create_time,update_time
+    </sql>
+
+
+</mapper>
