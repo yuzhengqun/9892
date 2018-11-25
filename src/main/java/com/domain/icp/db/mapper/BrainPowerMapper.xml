@@ -25,4 +25,149 @@
     </sql>
 
 
+    <insert id="save" parameterType="com.domain.icp.db.vo.BrainPowerOrder">
+        insert into brainpower_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="punycode != null">
+                punycode,
+            </if>
+            <if test="suffix != null">
+                suffix,
+            </if>
+            <if test="orderDate != null">
+                order_date,
+            </if>
+            <if test="type != null">
+                type,
+            </if>
+            <if test="icpNo != null">
+                icp_no,
+            </if>
+            <if test="icpDL != null">
+                icp_dl,
+            </if>
+            <if test="wxStatus != null">
+                wx_status,
+            </if>
+            <if test="qqStatus != null">
+                qq_status,
+            </if>
+            <if test="absmiddle != null">
+                absmiddle,
+            </if>
+            <if test="orderStatus != null">
+                order_status,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="isLead != null">
+                is_lead,
+            </if>
+            <if test="auctionEndTime != null">
+                auction_end_time,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="punycode != null">
+                #{punycode},
+            </if>
+            <if test="suffix != null">
+                #{suffix},
+            </if>
+            <if test="orderDate != null">
+                #{orderDate},
+            </if>
+            <if test="type != null">
+                #{type},
+            </if>
+            <if test="icpNo != null">
+                #{icpNo},
+            </if>
+            <if test="icpDL != null">
+                #{icpDL},
+            </if>
+            <if test="wxStatus != null">
+                #{wxStatus},
+            </if>
+            <if test="qqStatus != null">
+                #{qqStatus},
+            </if>
+            <if test="absmiddle != null">
+                #{absmiddle},
+            </if>
+            <if test="orderStatus != null">
+                #{orderStatus},
+            </if>
+            <if test="price != null">
+                #{price},
+            </if>
+            <if test="isLead != null">
+                #{isLead},
+            </if>
+            <if test="auctionEndTime != null">
+                #{auctionEndTime},
+            </if>
+            <if test="createTime != null">
+               create_time = now();
+            </if>
+            <if test="updateTime != null">
+                update_time = now(),
+            </if>
+        </trim>
+    </insert>
+
+
+    <select id="update" parameterType="com.domain.icp.db.vo.DomainInfo">
+        update brainpower_order
+        <set>
+
+            <if test="icpNo != null">
+                icp_no = #{icpNo},
+            </if>
+            <if test="icpDL != null">
+                icp_no = #{icpDL},
+            </if>
+            <if test="wxStatus != null">
+                wx_status = #{wxStatus},
+            </if>
+            <if test="qqStatus != null">
+                qq_status = #{qqStatus},
+            </if>
+            <if test="absmiddle != null">
+                absmiddle = #{absmiddle},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="isLead != null">
+                is_lead = #{isLead},
+            </if>
+            <if test="auctionEndTime != null">
+                auction_end_time = #{auctionEndTime},
+            </if>
+            <if test="updateTime != null">
+                update_time = now(),
+            </if>
+        </set>
+        where punycode = #{punycode} and order_date=#{orderDate}
+    </select>
+
+    <select id="findByPunycodeAndOrderDate" parameterType="com.domain.icp.db.vo.DomainInfo" resultType="com.domain.icp.db.vo.DomainInfo">
+        select
+        <include refid="Base_Column_List" />
+        from
+        brainpower_order
+        where
+         punycode = #{punycode} and order_date = #{orderDate}
+    </select>
 </mapper>
