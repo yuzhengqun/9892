@@ -1,5 +1,8 @@
 package com.domain.icp.schema.brainpower;
 
+import com.domain.icp.db.vo.BrainPowerOrder;
+import com.domain.icp.service.BrainPowerService;
+import com.domain.icp.util.JumingCookieUtil;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -15,11 +18,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 删除域名爬取
@@ -27,14 +30,33 @@ import java.util.Map;
 public class DeleteDomainSpiderApp {
 
 
-    public void spider() {
+    @Autowired
+    private BrainPowerService brainPowerService;
 
+    @Scheduled(cron = "0/2 * * * * *")
+    public void spider() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = sdf.format(new Date());
+        try {
+            List<BrainPowerOrder> delCnList = this.spiderDelDomain("cn,com.cn", currentDate, JumingCookieUtil.getJMCookie());
+            this.saveOrUpdateBrainPowerOrders(delCnList);
+            List<BrainPowerOrder> delComList = this.spiderDelDomain("com", currentDate, JumingCookieUtil.getJMCookie());
+            this.saveOrUpdateBrainPowerOrders(delComList);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
+    private void saveOrUpdateBrainPowerOrders(List<BrainPowerOrder> brainPowerOrders) {
+        for (BrainPowerOrder brainPowerOrder : brainPowerOrders) {
+            brainPowerService.saveOrUpdate(brainPowerOrder);
+        }
+    }
 
 
-    private List<Map<String, Integer>> spiderDelDomain(String suffixs, String deleteDate, String cookie) throws Exception {
+    private List<BrainPowerOrder> spiderDelDomain(String suffixs, String deleteDate, String cookie) throws Exception {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost("http://www.juming.com/6/index.htm?cha=1");
         //set headers
@@ -72,8 +94,8 @@ public class DeleteDomainSpiderApp {
         String responseStr = EntityUtils.toString(httpResponse.getEntity(), "utf-8");
         Document doc = Jsoup.parse(responseStr);
         Elements trElements = doc.select("body > form > div > table > tbody > tr");
-        List<Map<String, Integer>> result = new ArrayList<>();
-        Map<String, Integer> map = null;
+        List<BrainPowerOrder> result = new ArrayList<>();
+        BrainPowerOrder brainPowerOrder = null;
         for (int i = 0; i < trElements.size() - 1; i++) {
             Element trElement = trElements.get(i);
             Elements tdElements = trElement.select("td");
@@ -88,8 +110,12 @@ public class DeleteDomainSpiderApp {
                     absmiddle = 2;
                 }
             }
-            map = new HashMap<>();
-            map.put(punycode.toLowerCase().trim(), absmiddle);
+            brainPowerOrder = new BrainPowerOrder();
+            brainPowerOrder.setPunycode(punycode);
+            brainPowerOrder.setOrderDate(deleteDate);
+            brainPowerOrder.setAbsmiddle(absmiddle);
+            brainPowerOrder.setType(1);
+            result.add(brainPowerOrder);
         }
         return result;
     }
