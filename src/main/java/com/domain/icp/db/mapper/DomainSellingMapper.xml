@@ -252,4 +252,12 @@
         </foreach>
 
     </delete>
+
+    <select id="listPunycodeListForICPQuery" parameterType="java.util.Map"  resultMap="BaseResultMap">
+        select punycode from domain_selling where is_icp=#{status}  limit #{size} offset #{offset}
+    </select>
+
+    <select id="listForQueryWXStatus" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select punycode,wx_status_url from domain_selling where is_icp=1 and wx_status=#{wxStatus}  limit #{size} offset #{offset}
+    </select>
 </mapper>

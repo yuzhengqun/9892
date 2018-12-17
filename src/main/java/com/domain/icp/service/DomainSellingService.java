@@ -12,4 +12,8 @@ public interface DomainSellingService {
     void batchUpdate(List<DomainSelling> domainSelling);
 
     void batchDelete(List<String> punycodes, Integer platform);
+
+    List<DomainSelling> listPunycodeListForICPQuery(Integer size, Integer offset, Integer status);
+
+    List<DomainSelling> listForQueryWXStatus(Integer size, Integer offset, Integer status);
 }

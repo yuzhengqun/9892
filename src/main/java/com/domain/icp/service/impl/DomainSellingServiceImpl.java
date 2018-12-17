@@ -9,7 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DomainSellingServiceImpl implements DomainSellingService {
@@ -62,5 +64,23 @@ public class DomainSellingServiceImpl implements DomainSellingService {
             }
             domainSellingDao.batchDeleteJMDomain(currentBatchList);
         }
+    }
+
+    @Override
+    public List<DomainSelling> listPunycodeListForICPQuery(Integer size, Integer offset, Integer status) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("offset", offset);
+        map.put("size", size);
+        map.put("status", status);
+        return domainSellingDao.listPunycodeListForICPQuery(map);
+    }
+
+    @Override
+    public List<DomainSelling> listForQueryWXStatus(Integer size, Integer offset, Integer status) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("offset", offset);
+        map.put("size", size);
+        map.put("wxStatus", status);
+        return domainSellingDao.listForQueryWXStatus(map);
     }
 }
