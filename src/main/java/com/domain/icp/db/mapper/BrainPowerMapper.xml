@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.domain.icp.db.dao.DomainInfoDao">
+<mapper namespace="com.domain.icp.db.dao.BrainPowerDao">
     <resultMap id="BaseResultMap" type="com.domain.icp.db.vo.BrainPowerOrder">
         <result column="punycode" jdbcType="VARCHAR" property="punycode"/>
         <result column="suffix" jdbcType="VARCHAR" property="suffix"/>
@@ -18,10 +18,16 @@
         <result column="auction_status" jdbcType="INTEGER" property="auctionStatus"/>
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="is_icp" jdbcType="INTEGER" property="isIcp"/>
+        <result column="icp_entity" jdbcType="VARCHAR" property="icpEntity"/>
+        <result column="icp_nature" jdbcType="VARCHAR" property="icpNature"/>
+        <result column="wx_status_url" jdbcType="VARCHAR" property="wxStatusUrl"/>
+        <result column="give_up_bid" jdbcType="INTEGER" property="giveUpBid"/>
+        <result column="dns_parse_status" jdbcType="INTEGER" property="dnsParseStatus"/>
     </resultMap>
     <sql id="Base_Column_List">
-        punycode, suffix,
-        order_date,type,icp_no,icp_dl,wx_status,qq_status,absmiddle,order_status,price,is_lead,auction_end_time,auction_status,create_time,update_time
+        punycode,
+        suffix,order_date,type,is_icp,icp_no,icp_entity,icp_nature,icp_dl,wx_status,wx_status_url,qq_status,absmiddle,order_status,price,is_lead,auction_end_time,auction_status,give_up_bid,dns_parse_status,create_time,update_time
     </sql>
 
 
@@ -115,7 +121,7 @@
                 #{auctionEndTime},
             </if>
             <if test="createTime != null">
-               create_time = now();
+                create_time = now();
             </if>
             <if test="updateTime != null">
                 update_time = now(),
@@ -124,15 +130,14 @@
     </insert>
 
 
-    <select id="update" parameterType="com.domain.icp.db.vo.DomainInfo">
+    <select id="update" parameterType="com.domain.icp.db.vo.BrainPowerOrder">
         update brainpower_order
         <set>
-
             <if test="icpNo != null">
                 icp_no = #{icpNo},
             </if>
             <if test="icpDL != null">
-                icp_no = #{icpDL},
+                icp_dl = #{icpDL},
             </if>
             <if test="wxStatus != null">
                 wx_status = #{wxStatus},
@@ -152,22 +157,97 @@
             <if test="isLead != null">
                 is_lead = #{isLead},
             </if>
+            <if test="auctionStatus != null">
+                auction_status = #{auctionStatus},
+            </if>
             <if test="auctionEndTime != null">
                 auction_end_time = #{auctionEndTime},
             </if>
             <if test="updateTime != null">
                 update_time = now(),
             </if>
+            <if test="isIcp != null">
+                is_icp = #{isIcp},
+            </if>
+            <if test="icpEntity != null">
+                icp_entity = #{icpEntity},
+            </if>
+            <if test="icpNature != null">
+                icp_nature = #{icpNature},
+            </if>
+            <if test="wxStatusUrl != null">
+                wx_status_url = #{wxStatusUrl},
+            </if>
+            <if test="giveUpBid != null">
+                give_up_bid = #{giveUpBid},
+            </if>
+            <if test="dnsParseStatus != null">
+                dns_parse_status = #{dnsParseStatus},
+            </if>
         </set>
         where punycode = #{punycode} and order_date=#{orderDate}
     </select>
 
-    <select id="findByPunycodeAndOrderDate" parameterType="com.domain.icp.db.vo.DomainInfo" resultType="com.domain.icp.db.vo.DomainInfo">
+    <select id="findByPunycodeAndOrderDate" parameterType="com.domain.icp.db.vo.BrainPowerOrder"
+            resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from
         brainpower_order
         where
-         punycode = #{punycode} and order_date = #{orderDate}
+        punycode = #{punycode} and order_date = #{orderDate}
+    </select>
+
+    <select id="listNotQueryICPInfos" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        brainpower_order
+        where is_icp = 0
+    </select>
+
+    <select id="listByOrderDate" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        brainpower_order
+        where is_icp = 1 and order_date = #{orderDate}
+    </select>
+
+    <select id="listOrderTasks" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        brainpower_order
+        where
+        suffix = #{suffix} and order_date = #{orderDate} and order_status = 0 and wx_status = #{wxStatus}
+        and type = #{type} and icp_dl = #{icpDL}
+    </select>
+
+    <select id="listForInitAuctionInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        brainpower_order
+        where
+        auction_status = 0 and order_status = 1
+    </select>
+
+    <select id="listForSyncAuctionInfo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        brainpower_order
+        where
+        auction_status = 1 and order_status = 1
+    </select>
+
+    <select id="listForBid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from
+        brainpower_order
+        where
+        auction_status = 1 and order_status = 1 and give_up_bid = 0 and dns_parse_status = 1
     </select>
 </mapper>

@@ -13,7 +13,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.4.RELEASE</version>
-        <relativePath />
+        <relativePath/>
     </parent>
 
     <properties>
@@ -96,7 +96,7 @@
             </plugin>
         </plugins>
         <resources>
-            <resource>
+            <!--<resource>
                 <directory>src/main/java/com/domain/icp/db/mapper</directory>
                 <includes>
                     <include>**/*.properties</include>
@@ -106,7 +106,7 @@
                     <include>**/*.*</include>
                 </includes>
                 <filtering>false</filtering>
-            </resource>
+            </resource>-->
             <resource>
                 <directory>src/main/resources</directory>
                 <includes>
@@ -117,6 +117,13 @@
                     <include>**/*.*</include>
                 </includes>
                 <filtering>false</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
             </resource>
         </resources>
     </build>

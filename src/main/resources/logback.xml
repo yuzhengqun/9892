@@ -25,7 +25,7 @@
 					<DefaultValue>unknown</DefaultValue>
 				</discriminator>
 
-				<file>../logs/outer_order.log</file>
+				<file>../logs/9795.log</file>
 				<!-- deny all events with a level below INFO, that is TRACE and DEBUG -->
 				<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 					<level>DEBUG</level>
@@ -46,7 +46,7 @@
 		
     
 				<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-					<fileNamePattern>../logs/order.%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+					<fileNamePattern>../logs/9795.%d{yyyy-MM-dd}-%i.log</fileNamePattern>
 					<MaxHistory>30</MaxHistory>
 					<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
 						<maxFileSize>10MB</maxFileSize>
@@ -67,13 +67,13 @@
 		</discriminator>
 		<sift>
 			<appender name="FILE_ERROR_${channel}" class="ch.qos.logback.core.rolling.RollingFileAppender">
-				<file>../logs/order_error.log</file>
+				<file>../logs/9795_error.log</file>
 				<append>true</append>
 				<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 					<level>warn</level>
 				</filter>
 				<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
-					<fileNamePattern>../logs/order_error.%i.log</fileNamePattern>
+					<fileNamePattern>../logs/9795_error.%i.log</fileNamePattern>
 					<minIndex>1</minIndex>
 					<maxIndex>9</maxIndex>
 				</rollingPolicy>

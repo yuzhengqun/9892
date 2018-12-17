@@ -33,7 +33,7 @@ public class DeleteDomainSpiderApp {
     @Autowired
     private BrainPowerService brainPowerService;
 
-    @Scheduled(cron = "0/2 * * * * *")
+//    @Scheduled(cron = "0/2 * * * * *")
     public void spider() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String currentDate = sdf.format(new Date());

@@ -8,9 +8,13 @@ public class BrainPowerOrder {
     private String suffix;
     private String orderDate;
     private Integer type;
+    private Integer isIcp;
     private String icpNo;
+    private String icpEntity;
+    private String icpNature;
     private Integer icpDL;
     private Integer wxStatus;
+    private String wxStatusUrl;
     private Integer qqStatus;
     private Integer absmiddle;
     private Integer orderStatus;
@@ -18,6 +22,8 @@ public class BrainPowerOrder {
     private Integer isLead;
     private Integer auctionStatus;
     private Date auctionEndTime;
+    private Integer giveUpBid;
+    private Integer dnsParseStatus;
     private Date createTime;
     private Date updateTime;
 
@@ -147,6 +153,54 @@ public class BrainPowerOrder {
 
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Integer getIsIcp() {
+        return isIcp;
+    }
+
+    public void setIsIcp(Integer isIcp) {
+        this.isIcp = isIcp;
+    }
+
+    public String getIcpEntity() {
+        return icpEntity;
+    }
+
+    public void setIcpEntity(String icpEntity) {
+        this.icpEntity = icpEntity;
+    }
+
+    public String getIcpNature() {
+        return icpNature;
+    }
+
+    public void setIcpNature(String icpNature) {
+        this.icpNature = icpNature;
+    }
+
+    public String getWxStatusUrl() {
+        return wxStatusUrl;
+    }
+
+    public void setWxStatusUrl(String wxStatusUrl) {
+        this.wxStatusUrl = wxStatusUrl;
+    }
+
+    public Integer getGiveUpBid() {
+        return giveUpBid;
+    }
+
+    public void setGiveUpBid(Integer giveUpBid) {
+        this.giveUpBid = giveUpBid;
+    }
+
+    public Integer getDnsParseStatus() {
+        return dnsParseStatus;
+    }
+
+    public void setDnsParseStatus(Integer dnsParseStatus) {
+        this.dnsParseStatus = dnsParseStatus;
     }
 
     @Override
