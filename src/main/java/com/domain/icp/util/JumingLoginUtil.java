@@ -14,8 +14,8 @@ public class JumingLoginUtil {
     private static Logger logger = LoggerFactory.getLogger(JumingLoginUtil.class);
 
     private static HttpClientKit httpClientKit = new HttpClientKit();
-    private static String user_name = "350363013@qq.com";
-    private static String PASSWORD = "Lxf791205";
+    private static String user_name = "xxxx";
+    private static String PASSWORD = "xxxx";
 
     private static boolean hasLogin = false;
 

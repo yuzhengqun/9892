@@ -45,11 +45,11 @@ public class SpiderSellingDomainTask {
         try {
             Date updateTime = new Date();
             Map<String, JumingSiteModel> map = new HashMap<>();
-//            String baseUrl = "http://www.juming.com/ykj/?api_sou=1&sfba=1&ymlx=0&qian1={priceMin}&qian2={priceMax}&jgpx=0&meiye=500&page={page}";
-//            map.putAll(this.spider(baseUrl, 0, 100, 5, null, updateTime));
-//            logger.info("爬取0-100价格区间的域名成功");
-//            map.putAll(this.spider(baseUrl, 100, 2000, 20, null, updateTime));
-//            logger.info("爬取100-2000价格区间的域名成功");
+            String baseUrl = "http://www.juming.com/ykj/?api_sou=1&sfba=1&ymlx=0&qian1={priceMin}&qian2={priceMax}&jgpx=0&meiye=500&page={page}";
+            map.putAll(this.spider(baseUrl, 0, 100, 5, null, updateTime));
+            logger.info("爬取0-100价格区间的域名成功");
+            map.putAll(this.spider(baseUrl, 100, 2000, 20, null, updateTime));
+            logger.info("爬取100-2000价格区间的域名成功");
             // tencent
             String tencentBaseUrl = "http://www.juming.com/ykj/?api_sou=1&sfba=1995&ymlx=0&qian1={priceMin}&qian2={priceMax}&jgpx=0&meiye=500&page={page}";
             map.putAll(this.spider(tencentBaseUrl, 0, 500, 100, "tencent", updateTime));
