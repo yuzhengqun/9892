@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.domain.icp.db.dao.DomainSellingDao">
+    <resultMap id="BaseResultMap" type="com.domain.icp.db.vo.DomainSelling">
+        <result column="punycode" jdbcType="VARCHAR" property="punycode"/>
+        <result column="suffix" jdbcType="VARCHAR" property="suffix"/>
+        <result column="prefix" jdbcType="VARCHAR" property="prefix"/>
+        <result column="registrar" jdbcType="VARCHAR" property="registrar"/>
+        <result column="is_icp" jdbcType="INTEGER" property="isIcp"/>
+        <result column="icp_no" jdbcType="VARCHAR" property="icpNo"/>
+        <result column="length" jdbcType="INTEGER" property="length"/>
+        <result column="icp_nature" jdbcType="VARCHAR" property="icpNature"/>
+        <result column="site_title" jdbcType="VARCHAR" property="siteTitle"/>
+        <result column="register_date" jdbcType="TIMESTAMP" property="registerDate"/>
+        <result column="expire_date" jdbcType="TIMESTAMP" property="expireDate"/>
+        <result column="qq_status" jdbcType="INTEGER" property="qqStatus"/>
+        <result column="wx_status" jdbcType="INTEGER" property="wxStatus"/>
+        <result column="price" jdbcType="INTEGER" property="price"/>
+        <result column="sold_url" jdbcType="VARCHAR" property="soldUrl"/>
+        <result column="is_recommend" jdbcType="INTEGER" property="isRecommend"/>
+        <result column="icp_join_up" jdbcType="VARCHAR" property="icpJoinUp"/>
+        <result column="icp_independence" jdbcType="INTEGER" property="icpInDependence"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="seller_id" jdbcType="VARCHAR" property="sellerId"/>
+        <result column="platform" jdbcType="INTEGER" property="platform"/>
+        <result column="icp_date" jdbcType="TIMESTAMP" property="icpDate"/>
+        <result column="icp_area" jdbcType="VARCHAR" property="icpArea"/>
+        <result column="wx_status_url" jdbcType="VARCHAR" property="wxStatusUrl"/>
+        <result column="qq_status_url" jdbcType="VARCHAR" property="qqStatusUrl"/>
+        <result column="dns_parser" jdbcType="INTEGER" property="dnsParser"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        punycode, suffix, prefix, registrar, is_icp,
+        icp_no,length,icp_nature,site_title,register_date,
+        expire_date,qq_status,wx_status,price,sold_url,is_recommend,icp_join_up,icp_independence,status,
+        description,seller_id,platform,icp_date,icp_area,qq_status_url,wx_status_url,dns_parser
+    </sql>
+
+    <insert id="batchSave" parameterType="java.util.List">
+        <foreach collection="list" item="item" open="" close="" separator=";">
+            insert into domain_selling
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="item.punycode != null">
+                    punycode,
+                </if>
+                <if test="item.suffix != null">
+                    suffix,
+                </if>
+                <if test="item.prefix != null">
+                    prefix,
+                </if>
+                <if test="item.registrar != null">
+                    registrar,
+                </if>
+                <if test="item.isIcp != null">
+                    is_icp,
+                </if>
+                <if test="item.icpNo != null">
+                    icp_no,
+                </if>
+                <if test="item.length != null">
+                    length,
+                </if>
+                <if test="item.icpNature != null">
+                    icp_nature,
+                </if>
+                <if test="item.siteTitle != null">
+                    site_title,
+                </if>
+                <if test="item.registerDate != null">
+                    register_date,
+                </if>
+                <if test="item.expireDate != null">
+                    expire_date,
+                </if>
+                <if test="item.qqStatus != null">
+                    qq_status,
+                </if>
+                <if test="item.wxStatus != null">
+                    wx_status,
+                </if>
+                <if test="item.price != null">
+                    price,
+                </if>
+                <if test="item.soldUrl != null">
+                    sold_url,
+                </if>
+                <if test="item.isRecommend != null">
+                    is_recommend,
+                </if>
+                <if test="item.icpJoinUp != null">
+                    icp_join_up,
+                </if>
+                <if test="item.icpInDependence != null">
+                    icp_independence,
+                </if>
+                <if test="item.description != null">
+                    type,
+                </if>
+                <if test="item.sellerId != null">
+                    seller_id,
+                </if>
+                <if test="item.platform != null">
+                    platform,
+                </if>
+            </trim>
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="item.punycode != null">
+                    #{item.punycode},
+                </if>
+                <if test="item.suffix != null">
+                    #{item.suffix,jdbcType=VARCHAR},
+                </if>
+                <if test="item.prefix != null">
+                    #{item.prefix},
+                </if>
+                <if test="item.registrar != null">
+                    #{item.registrar},
+                </if>
+                <if test="item.isIcp != null">
+                    #{item.isIcp},
+                </if>
+                <if test="item.icpNo != null">
+                    #{item.icpNo},
+                </if>
+                <if test="item.length != null">
+                    #{item.length},
+                </if>
+                <if test="item.icpNature != null">
+                    #{item.icpNature},
+                </if>
+                <if test="item.siteTitle != null">
+                    #{item.siteTitle},
+                </if>
+                <if test="item.registerDate != null">
+                    #{item.registerDate},
+                </if>
+                <if test="item.expireDate != null">
+                    #{item.expireDate},
+                </if>
+                <if test="item.qqStatus != null">
+                    #{item.qqStatus},
+                </if>
+                <if test="item.wxStatus != null">
+                    #{item.wxStatus},
+                </if>
+                <if test="item.price != null">
+                    #{item.price},
+                </if>
+                <if test="item.soldUrl != null">
+                    #{item.soldUrl},
+                </if>
+                <if test="item.isRecommend != null">
+                    #{item.isRecommend},
+                </if>
+                <if test="item.icpJoinUp != null">
+                    #{item.icpJoinUp},
+                </if>
+                <if test="item.icpInDependence != null">
+                    #{item.icpInDependence},
+                </if>
+                <if test="item.description != null">
+                    #{item.description,jdbcType=CHAR},
+                </if>
+                <if test="item.sellerId != null">
+                    #{item.sellerId},
+                </if>
+                <if test="item.platform != null">
+                    #{item.platform},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" open="" close="" separator=";">
+            update domain_selling
+            <set>
+                <if test="item.suffix != null">
+                    suffix = #{item.suffix,jdbcType=VARCHAR},
+                </if>
+                <if test="item.prefix != null">
+                    prefix = #{item.prefix},
+                </if>
+                <if test="item.registrar != null">
+                    registrar = #{item.registrar},
+                </if>
+                <if test="item.isIcp != null">
+                    is_icp = #{item.isIcp},
+                </if>
+                <if test="item.icpNo != null">
+                    icp_no = #{item.icpNo},
+                </if>
+                <if test="item.length != null">
+                    length = #{item.length},
+                </if>
+                <if test="item.icpNature != null">
+                    icp_nature = #{item.icpNature},
+                </if>
+                <if test="item.siteTitle != null">
+                    site_title = #{item.siteTitle},
+                </if>
+                <if test="item.registerDate != null">
+                    register_date = #{item.registerDate},
+                </if>
+                <if test="item.expireDate != null">
+                    expire_date = #{item.expireDate},
+                </if>
+                <if test="item.qqStatus != null">
+                    qq_status = #{item.qqStatus},
+                </if>
+                <if test="item.wxStatus != null">
+                    wx_status = #{item.wxStatus},
+                </if>
+                <if test="item.price != null">
+                    price = #{item.price},
+                </if>
+                <if test="item.soldUrl != null">
+                    sold_url = #{item.soldUrl},
+                </if>
+                <if test="item.isRecommend != null">
+                    is_recommend = #{item.isRecommend},
+                </if>
+                <if test="item.icpJoinUp != null">
+                    icp_join_up = #{item.icpJoinUp},
+                </if>
+                <if test="item.icpInDependence != null">
+                    icp_independence = #{item.icpInDependence},
+                </if>
+                <if test="item.description != null">
+                    type = #{item.type,jdbcType=CHAR},
+                </if>
+                <if test="item.sellerId != null">
+                    seller_id = #{item.sellerId},
+                </if>
+                <if test="item.platform != null">
+                    platform = #{item.platform},
+                </if>
+                <if test="item.updateTime != null">
+                    update_time = #{item.updateTime},
+                </if>
+            </set>
+            where punycode = #{item.punycode}
+        </foreach>
+    </update>
+
+    <delete id="batchDeleteJMDomain" parameterType="java.util.List">
+        delete from domain_selling where platform = 1 and punycode in
+        <foreach collection="list" item="punycode" separator="," open="(" close=")">
+            #{punycode}
+        </foreach>
+
+    </delete>
+</mapper>
