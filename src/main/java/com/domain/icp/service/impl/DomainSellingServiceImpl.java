@@ -83,4 +83,12 @@ public class DomainSellingServiceImpl implements DomainSellingService {
         map.put("wxStatus", status);
         return domainSellingDao.listForQueryWXStatus(map);
     }
+
+    @Override
+    public List<DomainSelling> listForWhoisQuery(Integer size, Integer offset) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("size", size);
+        map.put("offset", offset);
+        return domainSellingDao.listForWhoisQuery(map);
+    }
 }

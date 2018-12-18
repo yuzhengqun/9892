@@ -260,4 +260,14 @@
     <select id="listForQueryWXStatus" parameterType="java.util.Map" resultMap="BaseResultMap">
         select punycode,wx_status_url from domain_selling where is_icp=1 and wx_status=#{wxStatus}  limit #{size} offset #{offset}
     </select>
+
+    <select id="listForWhoisQuery" parameterType="java.util.Map" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from
+        domain_selling
+        where
+        status = 1 and is_icp = 1 and register_date is null
+        limit #{size} offset #{offset}
+    </select>
 </mapper>

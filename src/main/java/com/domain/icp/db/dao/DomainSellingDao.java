@@ -16,4 +16,6 @@ public interface DomainSellingDao {
     List<DomainSelling> listPunycodeListForICPQuery(Map<String, Integer> map);
 
     List<DomainSelling> listForQueryWXStatus(Map<String, Object> map);
+
+    List<DomainSelling> listForWhoisQuery(Map<String, Object> map);
 }

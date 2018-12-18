@@ -16,4 +16,6 @@ public interface DomainSellingService {
     List<DomainSelling> listPunycodeListForICPQuery(Integer size, Integer offset, Integer status);
 
     List<DomainSelling> listForQueryWXStatus(Integer size, Integer offset, Integer status);
+
+    List<DomainSelling> listForWhoisQuery(Integer size, Integer offset);
 }

@@ -60,8 +60,43 @@ public class ICPQueryTask {
 
 
     @Scheduled(cron = "0/2 * * * * *")
-    public void updateWXStatus(){
+    public void initWXStatus() {
+        List<DomainSelling> tasks = domainSellingService.listForQueryWXStatus(500, 0, 0);
+        for (DomainSelling task : tasks) {
+            try {
+                String wxStatus = JMICPUtil.getWXStatusInfo(task.getWxStatusUrl());
+                if ("未拦截".equals(wxStatus)) {
+                    task.setWxStatus(1);
+                } else if ("已拦截".equals(wxStatus)) {
+                    task.setWxStatus(2);
+                }
+            } catch (Exception e) {
 
+            }
+        }
+        domainSellingService.batchUpdate(tasks);
+        if (!tasks.isEmpty()) {
+            logger.info("initWXStatus查询微信状态成功，查询数量:" + tasks.size());
+        }
     }
 
+
+    @Scheduled(cron = "0/2 * * * * *")
+    public void updateWXStatus() {
+        List<DomainSelling> tasks = domainSellingService.listForQueryWXStatus(500, 0, 1);
+        for (DomainSelling task : tasks) {
+            try {
+                String wxStatus = JMICPUtil.getWXStatusInfo(task.getWxStatusUrl());
+                if ("已拦截".equals(wxStatus)) {
+                    task.setWxStatus(2);
+                }
+            } catch (Exception e) {
+
+            }
+        }
+        domainSellingService.batchUpdate(tasks);
+        if (!tasks.isEmpty()) {
+            logger.info("updateWXStatus查询微信状态成功，查询数量:" + tasks.size());
+        }
+    }
 }
